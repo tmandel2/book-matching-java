@@ -34,4 +34,10 @@ public class BookController {
         return bookRepository.findAll();
     }
 
+    @GetMapping("/books/{id}")
+    public Book showBook(@PathVariable Long id){
+        Book foundBook = bookRepository.findById(id).get();
+        return foundBook;
+    }
+
 }
