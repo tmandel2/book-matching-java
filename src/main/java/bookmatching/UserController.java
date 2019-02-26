@@ -63,5 +63,18 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @PutMapping("/users/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable Long id) throws Exception{
+        Optional<User> editedUser = userRepository.findById(id);
+        if(editedUser.isPresent()){
+            User userToEdit = editedUser.get();
+            userToEdit.setUsername(user.getUsername());
+            userToEdit.setPassword(user.getPassword());
+            return userService.saveUser(userToEdit);
+        } else {
+            throw new Exception("not a user");
+        }
+    }
+
 
 }
