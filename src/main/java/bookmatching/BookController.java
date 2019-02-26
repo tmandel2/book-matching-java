@@ -29,4 +29,9 @@ public class BookController {
     }
 
 
+    @GetMapping("/books")
+    public Iterable<Book> getBooks(){
+        return bookRepository.findAll();
+    }
+
 }
