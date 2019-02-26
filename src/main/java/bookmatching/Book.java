@@ -23,7 +23,6 @@ public class Book {
 
 
     @ManyToMany(mappedBy = "likedBooks")
-    @JsonIgnore
     private Set<User> users;
 
 //    @ManyToMany(mappedBy = "books")

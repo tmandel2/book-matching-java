@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -48,10 +49,10 @@ public class UserController {
         Optional<User> foundUser = userRepository.findById(id);
         if(foundUser.isPresent()){
             User user = foundUser.get();
-//            Iterable<Book> books = bookRepository.findByUserId(id);
-            HashMap<String, Object> result = new HashMap<String, Object>();
+            Set<Book> books = user.getLikedBooks();
+            HashMap<Object, Object> result = new HashMap<Object, Object>();
             result.put("user", user);
-//            result.put("books", books);
+            result.put("books", books);
             return result;
         }else{
             throw new Exception("Bad User");

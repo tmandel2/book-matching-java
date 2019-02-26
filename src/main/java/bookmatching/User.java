@@ -21,7 +21,7 @@ public class User {
     @ManyToMany
     @JsonIgnore
     @JoinTable(
-            name = "user_books",
+            name = "likedbooks",
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "bookId"))
     private Set<Book> likedBooks;
