@@ -48,10 +48,10 @@ public class UserController {
         Optional<User> foundUser = userRepository.findById(id);
         if(foundUser.isPresent()){
             User user = foundUser.get();
-//            Iterable<Post> posts = postRepository.findByUserId(id);
+//            Iterable<Book> books = bookRepository.findByUserId(id);
             HashMap<String, Object> result = new HashMap<String, Object>();
             result.put("user", user);
-//            result.put("posts", posts);
+//            result.put("books", books);
             return result;
         }else{
             throw new Exception("Bad User");

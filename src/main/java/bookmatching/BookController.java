@@ -31,7 +31,8 @@ public class BookController {
 
     @GetMapping("/books")
     public Iterable<Book> getBooks(){
-        return bookRepository.findAll();
+        Iterable<Book> books = bookRepository.findAll();
+        return books;
     }
 
     @GetMapping("/books/{id}")
