@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Optional;
 
 
@@ -40,6 +41,20 @@ public class UserController {
         }
     }
 
+    @GetMapping("/users/{id}")
+    public HashMap show(@PathVariable Long id) throws Exception{
+        Optional<User> foundUser = userRepository.findById(id);
+        if(foundUser.isPresent()){
+            User user = foundUser.get();
+//            Iterable<Post> posts = postRepository.findByUserId(id);
+            HashMap<String, Object> result = new HashMap<String, Object>();
+            result.put("user", user);
+//            result.put("posts", posts);
+            return result;
+        }else{
+            throw new Exception("Bad User");
+        }
+    }
 
 
 }
