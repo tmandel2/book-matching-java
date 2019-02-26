@@ -15,6 +15,8 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private BookRepository bookRepository;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
