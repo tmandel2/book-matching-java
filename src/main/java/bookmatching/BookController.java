@@ -40,4 +40,18 @@ public class BookController {
         return foundBook;
     }
 
+    @PutMapping("/books/{id}")
+    public Book updatePost(@RequestBody Book book, @PathVariable Long id) throws Exception{
+        Optional<Book> editedBook = bookRepository.findById(id);
+        if(editedBook.isPresent()){
+            Book bookToEdit = editedBook.get();
+            bookToEdit.setTitle(book.getTitle());
+            bookToEdit.setAuthor(book.getAuthor());
+            bookToEdit.setImage(book.getImage());
+            return bookRepository.save(bookToEdit);
+        } else {
+            throw new Exception("book not here");
+        }
+    }
+
 }
