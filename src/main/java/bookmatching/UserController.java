@@ -76,5 +76,11 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/users/{id}")
+    public Optional<User> deleteUser(@PathVariable Long id){
+        Optional<User> userToDelete = userRepository.findById(id);
+        userRepository.deleteById(id);
+        return userToDelete;
+    }
 
 }
