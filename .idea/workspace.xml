@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5c60379-54e0-437d-a0e4-20bc8b97f96f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bookmatching/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookmatching/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Book-Matching-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Book-Matching-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Book-Matching-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/Book-Matching-1.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,11 +26,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bookmatching/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="229">
               <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,7 +69,6 @@
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/Application.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/WebMvcConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/UserService.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -70,6 +78,7 @@
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/BookRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/BookController.java" />
         <option value="$PROJECT_DIR$/src/main/java/bookmatching/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java" />
       </list>
     </option>
   </component>
@@ -311,16 +320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bookmatching/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -345,6 +344,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
           <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bookmatching/CorsConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
