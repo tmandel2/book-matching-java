@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -18,11 +19,21 @@ public class BookController {
 
 
     @PostMapping("/books")
-    public Book createBook(@RequestBody Book book, HttpSession session) {
+    public Book createBook(@RequestBody Book book, HttpSession session) throws Exception{
+        User user = userRepository.findByUsername(session.getAttribute("username").toString());
+        if(user == null){
+            throw new Exception("Log in");
+        }
+        Set<User> users = book.getUsers();
+        users.add(user);
+        Set<Book> likedBooks = user.getLikedBooks();
+        likedBooks.add(book);
+        book.setUsers(users);
+        user.setLikedBooks(likedBooks);
         Book createdBook = bookRepository.save(book);
+        userRepository.save(user);
         return createdBook;
     }
-
 
     @GetMapping("/books")
     public Iterable<Book> getBooks(){
