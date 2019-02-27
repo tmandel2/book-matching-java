@@ -44,6 +44,14 @@ public class UserController {
         }
     }
 
+    @GetMapping("/auth/logout")
+    public void logout(HttpSession session) {
+        session.removeAttribute("username");
+        session.removeAttribute("userId");
+        session.invalidate();
+        return;
+    }
+
     @GetMapping("/users/{id}")
     public HashMap show(@PathVariable Long id) throws Exception{
         Optional<User> foundUser = userRepository.findById(id);
