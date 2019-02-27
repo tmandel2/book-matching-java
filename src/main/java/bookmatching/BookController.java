@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,24 +29,11 @@ public class BookController {
         if(!bookInDatabase.isPresent()) {
             bookRepository.save(book);
         }
-//            Set<User> users = book.getUsers();
-//            users.add(user);
-            Set<Book> likedBooks = user.getLikedBooks();
-            likedBooks.add(book);
-//            book.setUsers(users);
-            user.setLikedBooks(likedBooks);
-//            Book createdBook = bookRepository.save(book);
-            userRepository.save(user);
-            return book;
-//        } else {
-//
-//            Set<Book> likedBooks = user.getLikedBooks();
-//            likedBooks.add(createdBook);
-//            user.setLikedBooks(likedBooks);
-//            userRepository.save(user);
-//            return createdBook;
-//        }
-
+        Set<Book> likedBooks = user.getLikedBooks();
+        likedBooks.add(book);
+        user.setLikedBooks(likedBooks);
+        userRepository.save(user);
+        return book;
     }
 
     @GetMapping("/books")
@@ -74,12 +62,30 @@ public class BookController {
         }
     }
 
+    //    To remove from a users favorites
+    @DeleteMapping("/users/books/{id}")
+    public User deleteFromFavorites(@PathVariable Long id, HttpSession session) throws Exception{
+        User user = userRepository.findByUsername(session.getAttribute("username").toString());
+        if(user == null){
+            throw new Exception("Log in");
+        }
+        Book foundBook = bookRepository.findById(id).get();
+            Set<Book> likedBooks = new HashSet<>(user.getLikedBooks());
+            Set<User> users = new HashSet<User>(foundBook.getUsers());
+            likedBooks.remove(foundBook);
+            user.setLikedBooks(likedBooks);
+            userRepository.save(user);
+            return user;
+//        } else {
+//            throw new Exception("Not a book");
+//        }
+    }
+
     @DeleteMapping("/books/{id}")
     public String deleteBook(@PathVariable Long id){
         bookRepository.deleteById(id);
         return "book gone";
     }
-
 
 
 }
