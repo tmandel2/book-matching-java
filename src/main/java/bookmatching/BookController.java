@@ -18,12 +18,7 @@ public class BookController {
 
 
     @PostMapping("/books")
-    public Book createBook(@RequestBody Book book, HttpSession session) throws Exception{
-//        User user = userRepository.findByUsername(session.getAttribute("username").toString());
-//        if(user == null){
-//            throw new Exception("You must log in");
-//        }
-//        book.setUser(author);
+    public Book createBook(@RequestBody Book book, HttpSession session) {
         Book createdBook = bookRepository.save(book);
         return createdBook;
     }

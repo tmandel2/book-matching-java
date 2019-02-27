@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Table(name = "Book")
 public class Book {
 
     @Id
@@ -24,9 +23,6 @@ public class Book {
 
     @ManyToMany(mappedBy = "likedBooks")
     private Set<User> users;
-
-//    @ManyToMany(mappedBy = "books")
-//    private Set<User> users = new HashSet<>();
 
     public Long getId() {
         return id;
