@@ -24,15 +24,26 @@ public class BookController {
         if(user == null){
             throw new Exception("Log in");
         }
-        Set<User> users = book.getUsers();
-        users.add(user);
-        Set<Book> likedBooks = user.getLikedBooks();
-        likedBooks.add(book);
-        book.setUsers(users);
-        user.setLikedBooks(likedBooks);
-        Book createdBook = bookRepository.save(book);
-        userRepository.save(user);
-        return createdBook;
+        Optional<Book> bookInDatabase = Optional.ofNullable(bookRepository.findByTitle(book.getTitle()));
+        if(bookInDatabase.isPresent()){
+            Set<User> users = book.getUsers();
+            users.add(user);
+            Set<Book> likedBooks = user.getLikedBooks();
+            likedBooks.add(book);
+            book.setUsers(users);
+            user.setLikedBooks(likedBooks);
+            Book createdBook = bookRepository.save(book);
+            userRepository.save(user);
+            return createdBook;
+        } else {
+            Book createdBook = bookRepository.save(book);
+            Set<Book> likedBooks = user.getLikedBooks();
+            likedBooks.add(createdBook);
+            user.setLikedBooks(likedBooks);
+            userRepository.save(user);
+            return createdBook;
+        }
+
     }
 
     @GetMapping("/books")
