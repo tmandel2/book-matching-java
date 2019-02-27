@@ -22,8 +22,10 @@ public class UserController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/auth/registration")
-    public User createUser(@RequestBody User user){
+    public User createUser(@RequestBody User user, HttpSession session){
         User createdUser = userService.saveUser(user);
+        session.setAttribute("username", createdUser.getUsername());
+        session.setAttribute("userId", createdUser.getId());
         return createdUser;
     }
 
@@ -73,11 +75,12 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public User updateUser(@RequestBody String username, @PathVariable Long id) throws Exception{
+    public User updateUser(@RequestBody String username, @PathVariable Long id, HttpSession session) throws Exception{
         Optional<User> editedUser = userRepository.findById(id);
         if(editedUser.isPresent()){
             User userToEdit = editedUser.get();
             userToEdit.setUsername(username);
+            session.setAttribute("username", userToEdit.getUsername());
 //            userToEdit.setPassword(userToEdit.getPassword());
             return userRepository.save(userToEdit);
         } else {
@@ -86,8 +89,11 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    public Optional<User> deleteUser(@PathVariable Long id){
+    public Optional<User> deleteUser(@PathVariable Long id, HttpSession session){
         Optional<User> userToDelete = userRepository.findById(id);
+        session.removeAttribute("username");
+        session.removeAttribute("userId");
+        session.invalidate();
         userRepository.deleteById(id);
         return userToDelete;
     }
