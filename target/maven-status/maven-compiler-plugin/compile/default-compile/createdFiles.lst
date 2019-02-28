@@ -1,11 +1,11 @@
+bookmatching/UsersController.class
 bookmatching/BookController.class
 bookmatching/Book.class
 bookmatching/Application.class
+bookmatching/Users.class
 bookmatching/CorsConfig.class
-bookmatching/UserService.class
+bookmatching/UsersRepository.class
+bookmatching/UsersService.class
 bookmatching/SecurityConfiguration.class
-bookmatching/User.class
 bookmatching/WebMvcConfig.class
-bookmatching/UserController.class
-bookmatching/UserRepository.class
 bookmatching/BookRepository.class

@@ -1,10 +1,7 @@
 package bookmatching;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,7 +19,7 @@ public class Book {
 
 
     @ManyToMany(mappedBy = "likedBooks")
-    private Set<User> users;
+    private Set<Users> users;
 
     public Long getId() {
         return id;
@@ -56,11 +53,11 @@ public class Book {
         this.image = image;
     }
 
-    public Set<User> getUsers() {
+    public Set<Users> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Set<Users> users) {
         this.users = users;
     }
 }

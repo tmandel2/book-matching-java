@@ -14,7 +14,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
         registry.addMapping("/**")
                 .allowedOrigins(
-                        "http://localhost:3000", "https://book-match-react.herokuapp.com")
+                        "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                 .allowCredentials(true)
                 .allowedHeaders("*");

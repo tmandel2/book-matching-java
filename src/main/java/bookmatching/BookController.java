@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -14,25 +13,25 @@ import java.util.Set;
 
 public class BookController {
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository usersRepository;
     @Autowired
     private BookRepository bookRepository;
 
 
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book, HttpSession session) throws Exception{
-        User user = userRepository.findByUsername(session.getAttribute("username").toString());
-        if(user == null){
+        Users users = usersRepository.findByUsername(session.getAttribute("username").toString());
+        if(users == null){
             throw new Exception("Log in");
         }
         Optional<Book> bookInDatabase = Optional.ofNullable(bookRepository.findByTitle(book.getTitle()));
         if(!bookInDatabase.isPresent()) {
             bookRepository.save(book);
         }
-        Set<Book> likedBooks = user.getLikedBooks();
+        Set<Book> likedBooks = users.getLikedBooks();
         likedBooks.add(book);
-        user.setLikedBooks(likedBooks);
-        userRepository.save(user);
+        users.setLikedBooks(likedBooks);
+        usersRepository.save(users);
         return book;
     }
 
@@ -64,17 +63,17 @@ public class BookController {
 
     //    To remove from a users favorites
     @DeleteMapping("/users/books/{id}")
-    public User deleteFromFavorites(@PathVariable Long id, HttpSession session) throws Exception{
-        User user = userRepository.findByUsername(session.getAttribute("username").toString());
+    public Users deleteFromFavorites(@PathVariable Long id, HttpSession session) throws Exception{
+        Users user = usersRepository.findByUsername(session.getAttribute("username").toString());
         if(user == null){
             throw new Exception("Log in");
         }
         Book foundBook = bookRepository.findById(id).get();
             Set<Book> likedBooks = new HashSet<>(user.getLikedBooks());
-            Set<User> users = new HashSet<User>(foundBook.getUsers());
+            Set<Users> users = new HashSet<Users>(foundBook.getUsers());
             likedBooks.remove(foundBook);
             user.setLikedBooks(likedBooks);
-            userRepository.save(user);
+            usersRepository.save(user);
             return user;
 //        } else {
 //            throw new Exception("Not a book");
