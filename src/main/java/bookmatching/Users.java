@@ -16,7 +16,7 @@ public class Users {
     private String username;
 
     private String password;
-
+//Connects this to the Books table, so many users and favorite the same book.
     @ManyToMany
     @JsonIgnore
     @JoinTable(

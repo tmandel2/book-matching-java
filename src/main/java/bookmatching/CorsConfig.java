@@ -11,7 +11,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-
+//When loading up to heroku, need to comment out the second allowedOrigins.
         registry.addMapping("/**")
                 .allowedOrigins(
                         "https://book-match-react.herokuapp.com")

@@ -43,6 +43,8 @@
             <!--<groupId>mysql</groupId>-->
             <!--<artifactId>mysql-connector-java</artifactId>-->
         <!--</dependency>-->
+
+
         <!-- These two dependencies fix java version errors for newer Java -->
         <dependency>
             <groupId>javax.xml.bind</groupId>

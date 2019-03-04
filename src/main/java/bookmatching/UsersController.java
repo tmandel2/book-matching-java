@@ -45,7 +45,7 @@ public class UsersController {
             throw new Exception("No Password");
         }
     }
-
+// Destroys the session
     @GetMapping("/auth/logout")
     public void logout(HttpSession session) {
         session.removeAttribute("username");
@@ -73,7 +73,7 @@ public class UsersController {
     public Iterable<Users> getUsers(){
         return usersRepository.findAll();
     }
-
+//App currently doesn't allow password change, but the route is prepared for a change.
     @PutMapping("/users/{id}")
     public Users updateUser(@RequestBody String username, @PathVariable Long id, HttpSession session) throws Exception{
         Optional<Users> editedUser = usersRepository.findById(id);

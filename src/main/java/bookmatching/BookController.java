@@ -17,7 +17,7 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
-
+//Automatically adds a book to the DB at the same time as adding to the logged in user's favorites.
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book, HttpSession session) throws Exception{
         Users users = usersRepository.findByUsername(session.getAttribute("username").toString());
@@ -34,19 +34,20 @@ public class BookController {
         usersRepository.save(users);
         return book;
     }
-
+//This will show all the books.
     @GetMapping("/books")
     public Iterable<Book> getBooks(){
         Iterable<Book> books = bookRepository.findAll();
         return books;
     }
-
+//This returns a specific book. This route and the above route are not both used, as the react app does
+//    not currently support individual books, but views all the books on a single page.
     @GetMapping("/books/{id}")
     public Book showBook(@PathVariable Long id){
         Book foundBook = bookRepository.findById(id).get();
         return foundBook;
     }
-
+//Cannot currently edit books through the app. But this route will allow it when that functionality is added to the react app.
     @PutMapping("/books/{id}")
     public Book updatePost(@RequestBody Book book, @PathVariable Long id) throws Exception{
         Optional<Book> editedBook = bookRepository.findById(id);
@@ -75,9 +76,6 @@ public class BookController {
             user.setLikedBooks(likedBooks);
             usersRepository.save(user);
             return user;
-//        } else {
-//            throw new Exception("Not a book");
-//        }
     }
 
     @DeleteMapping("/books/{id}")
