@@ -17,4 +17,4 @@ Routes:
 
 ## Technologies Used
 ### Java
-####IntelliJ IDE, MySQL, PostgreSQL, React, Google Books API
+#### IntelliJ IDE, MySQL, PostgreSQL, React, Google Books API
